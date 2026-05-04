@@ -13,8 +13,6 @@ graph TD
     B -->|Log forwarding| D[Wazuh SIEM]
     C -->|Log forwarding| D
     D -->|Alerts| E[TheHive\nCase Management]
-    E -->|Observable enrichment| F[Cortex\nAnalysers]
-    E -->|IOC sharing| G[MISP\nThreat Intelligence]
 ```
 
 ---
@@ -25,11 +23,11 @@ graph TD
 |-----------|------|---------|
 | **Wazuh** | SIEM / XDR -- log ingestion, FIM, rule-based detection, alerting | 4.14 |
 | **TheHive** | Case management -- incident tracking, observables, tasks | 5.6 |
-| **Cortex** | Observable enrichment -- VirusTotal, AbuseIPDB, Shodan | 4.0 |
-| **MISP** | Threat intelligence -- IOC storage and sharing | Latest |
 | **Sysmon** | Deep Windows endpoint telemetry (SwiftOnSecurity config) | 15.2 |
 | **VirtualBox** | Hypervisor -- isolated internal network | 7.1 |
 | **Kali Linux** | Attacker VM -- Metasploit, msfvenom, netcat | Latest |
+
+> IOC enrichment performed manually via VirusTotal, AbuseIPDB and Shodan. Cortex, MISP and Shuffle are documented as production integrations in each playbook but are not running in this lab due to resource constraints.
 
 ---
 
@@ -53,11 +51,10 @@ graph TD
 Deployed attacker and victim VMs in an isolated VirtualBox internal network. Installed Sysmon on the Windows victim using the SwiftOnSecurity config and confirmed Wazuh agents reporting on both endpoints before running any scenarios.
 
 ### Phase 2 - Integrations
-Connected all SOC stack components:
+Connected core SOC stack components:
 - **Wazuh → TheHive** -- alert forwarding for case creation
-- **TheHive ↔ Cortex** -- observable enrichment within cases
-- **TheHive ↔ MISP** -- bidirectional IOC sharing
-- **Cortex analysers enabled:** VirusTotal, AbuseIPDB, Shodan, URLhaus
+
+IOC enrichment handled manually: observables submitted to VirusTotal, AbuseIPDB and Shodan during each investigation, with results documented in the corresponding TheHive case.
 
 ### Phase 3 - Attack Simulation
 Ran each scenario on the victim VMs before writing the corresponding playbook. Tools and techniques used per scenario:
@@ -71,7 +68,7 @@ Exfiltration   → netcat large file transfer               → Sysmon Event ID 
 ```
 
 ### Phase 4 - Detection and Triage
-For each scenario, triaged the incident through TheHive: created cases, added observables and ran enrichment through Cortex. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
+For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
 
 ### Phase 5 - Playbook Authoring
 Wrote each playbook based on what actually happened in the lab -- detection criteria, triage questions, decision trees, escalation paths, automation scripts and UK GDPR compliance checkpoints. Post-incident reports completed per scenario using the standard template.
@@ -80,7 +77,7 @@ Wrote each playbook based on what actually happened in the lab -- detection crit
 
 ## What Each Playbook Contains
 
-Every playbook follows PICERL and NIST SP 800-61:
+Every playbook follows PICERL, aligned to ISO 27001:2022 Annex A incident management controls (A.5.24--A.5.28) and NIST SP 800-61 for procedural depth:
 
 - **Detection criteria** -- Wazuh rule IDs and Sysmon event IDs that trigger the playbook
 - **Triage questions** -- first five questions to answer within five minutes of alert
@@ -91,7 +88,7 @@ Every playbook follows PICERL and NIST SP 800-61:
 - **UK GDPR / ICO tripwires** -- 72-hour notification obligations flagged per scenario
 - **Known detection gaps** -- what the stack misses and what would close each gap
 - **Automation scripts** -- shell and PowerShell for containment, evidence collection, hunting
-- **IOC template** -- pre-formatted for TheHive and MISP ingestion
+- **IOC template** -- pre-formatted for TheHive ingestion
 - **Real-world reference** -- UK-relevant incident tied to each scenario
 
 ---
@@ -142,9 +139,8 @@ ir-playbooks/
 | Screenshot | Description |
 |------------|-------------|
 | `wazuh-fim-alert.png` | FIM mass modification alert firing during ransomware simulation |
-| `thehive-case-phishing.png` | TheHive case with observables and Cortex enrichment |
-| `cortex-virustotal-result.png` | VirusTotal analyser result on malware hash |
-| `misp-ioc-event.png` | IOCs added to MISP following lateral movement scenario |
+| `thehive-case-phishing.png` | TheHive case with observables and manual enrichment results |
+| `virustotal-hash-result.png` | Manual VirusTotal lookup on malware hash |
 | `sysmon-process-tree.png` | Sysmon Event ID 1 process tree showing malware parent chain |
 | `wazuh-logon-type3.png` | Wazuh alert on Event ID 4624 Logon Type 3 during lateral movement |
 | `mitre-navigator-layer.png` | ATT&CK navigator layer showing full technique coverage |
@@ -161,6 +157,7 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 - **Encrypted C2 over HTTPS** blends into normal web traffic -- SSL inspection or Zeek JA3 fingerprinting required
 - **Phishing email delivery** is not visible in Wazuh without mail gateway integration
 - **Pass-the-hash with legitimate admin accounts** requires behavioural baselining to separate from normal admin activity
+- **No automated enrichment** -- Cortex would automate the manual VirusTotal and AbuseIPDB lookups performed during each investigation
 
 ---
 
@@ -182,9 +179,8 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 - **Incident Response** -- end-to-end case lifecycle from detection through lessons learned
 - **Detection Engineering** -- Wazuh rule ID mapping, Sysmon event correlation, FIM tuning
-- **Threat Intelligence** -- IOC extraction, MISP event creation, Cortex enrichment workflows
+- **Threat Intelligence** -- manual IOC extraction and enrichment via VirusTotal, AbuseIPDB, Shodan
 - **UK GDPR Compliance** -- ICO notification obligations integrated into each playbook
-- **SOAR Awareness** -- escalation logic and automation hooks documented for Shuffle integration
 - **Linux Administration** -- VM networking, Wazuh agent deployment, shell scripting
 
 ---
@@ -194,9 +190,9 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 Full deployment notes in [`docs/setup.md`](docs/setup.md).
 
 Requirements:
-- Host machine with 16 GB+ RAM recommended
+- Host machine with 8 GB RAM minimum (16 GB recommended)
 - VirtualBox 7.1
-- Internet access for Cortex analyser enrichment
+- Internet access for manual IOC enrichment
 
 ---
 
@@ -209,6 +205,7 @@ Requirements:
 
 ## References
 
+- [ISO 27001:2022 -- Information Security Management](https://www.iso.org/standard/27001)
 - [NIST SP 800-61 Rev 2 -- Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
 - [NCSC Incident Management Guidance](https://www.ncsc.gov.uk/collection/incident-management)
 - [ICO -- Guide to UK GDPR](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/)
