@@ -42,7 +42,7 @@ Deployed attacker and victim VMs in an isolated VirtualBox internal network. Ins
 
 ### Phase 2 - Integrations
 Connected core SOC stack components:
-- **Wazuh → TheHive** -- alert forwarding for case creation
+- **Wazuh → TheHive** - alert forwarding for case creation
 
 IOC enrichment handled manually: observables submitted to VirusTotal, AbuseIPDB and Shodan during each investigation, with results documented in the corresponding TheHive case.
 
@@ -69,17 +69,17 @@ Wrote each playbook based on what actually happened in the lab - detection crite
 
 ???:
 
-- **Detection criteria** -- Wazuh rule IDs and Sysmon event IDs that trigger the playbook
-- **Triage questions** -- first five questions to answer within five minutes of alert
-- **Decision tree** -- Mermaid diagram with branching containment logic
-- **Escalation matrix** -- L1 → L2 → L3 → CISO triggers and handover requirements
-- **PICERL phases** -- all six phases with actual commands at each step
-- **Recovery validation checklist** -- explicit sign-off criteria before returning to production
-- **UK GDPR / ICO tripwires** -- 72-hour notification obligations flagged per scenario
-- **Known detection gaps** -- what the stack misses and what would close each gap
-- **Automation scripts** -- shell and PowerShell for containment, evidence collection, hunting
-- **IOC template** -- pre-formatted for TheHive ingestion
-- **Real-world reference** -- UK-relevant incident tied to each scenario
+- **Detection criteria** - Wazuh rule IDs and Sysmon event IDs that trigger the playbook
+- **Triage questions** - first five questions to answer within five minutes of alert
+- **Decision tree** - Mermaid diagram with branching containment logic
+- **Escalation matrix** - L1 → L2 → L3 → CISO triggers and handover requirements
+- **PICERL phases** - all six phases with actual commands at each step
+- **Recovery validation checklist** - explicit sign-off criteria before returning to production
+- **UK GDPR / ICO tripwires** - 72-hour notification obligations flagged per scenario
+- **Known detection gaps** - what the stack misses and what would close each gap
+- **Automation scripts** - shell and PowerShell for containment, evidence collection, hunting
+- **IOC template** - pre-formatted for TheHive ingestion
+- **Real-world reference** - UK-relevant incident tied to each scenario
 
 ---
 
@@ -173,11 +173,11 @@ Requirements:
 
 ## References
 
-- [ISO 27001:2022 -- Information Security Management](https://www.iso.org/standard/27001)
-- [NIST SP 800-61 Rev 2 -- Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
+- [ISO 27001:2022 - Information Security Management](https://www.iso.org/standard/27001)
+- [NIST SP 800-61 Rev 2 - Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
 - [NCSC Incident Management Guidance](https://www.ncsc.gov.uk/collection/incident-management)
-- [ICO -- Guide to UK GDPR](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/)
+- [ICO - Guide to UK GDPR](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org)
-- [NHS WannaCry Post-Incident Report -- NAO (2018)](https://www.nao.org.uk/reports/investigation-wannacry-cyber-attack-and-the-nhs/)
+- [NHS WannaCry Post-Incident Report - NAO (2018)](https://www.nao.org.uk/reports/investigation-wannacry-cyber-attack-and-the-nhs/)
 - [British Airways ICO Enforcement Notice (2020)](https://ico.org.uk/action-weve-taken/enforcement/british-airways/)
 - [SwiftOnSecurity Sysmon Config](https://github.com/SwiftOnSecurity/sysmon-config)
