@@ -42,19 +42,19 @@ Deployed attacker and victim VMs in an isolated VirtualBox internal network. Ins
 
 ### Phase 2 - Integrations
 Connected core SOC stack components:
-- **Wazuh → TheHive** - alert forwarding for case creation
+- **Wazuh -> TheHive** - alert forwarding for case creation
 
-IOC enrichment handled manually: observables submitted to VirusTotal, AbuseIPDB and Shodan during each investigation, with results documented in the corresponding TheHive case.
+IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB during each investigation, with results documented in the corresponding TheHive case.
 
 ### Phase 3 - Attack Simulation
 Ran each scenario on the victim VMs before writing the corresponding playbook. Tools and techniques used per scenario:
 
 ```
-Phishing       → Malicious .hta / macro-enabled Word doc → Sysmon Event ID 1, 3
-Malware        → Metasploit meterpreter reverse shell     → Sysmon Event ID 1, 3
-Ransomware     → RanSim / Python file encryptor           → Wazuh FIM mass modification
-Lateral Move   → Metasploit PSExec / pass-the-hash        → Event ID 4624, 7045
-Exfiltration   → netcat large file transfer               → Sysmon Event ID 3
+Phishing       -> Malicious .hta / macro-enabled Word doc -> Sysmon Event ID 1, 3
+Malware        -> Metasploit meterpreter reverse shell     -> Sysmon Event ID 1, 3
+Ransomware     -> RanSim / Python file encryptor           -> Wazuh FIM mass modification
+Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 7045
+Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
 ### Phase 4 - Detection and Triage
@@ -67,13 +67,13 @@ Wrote each playbook based on what actually happened in the lab - detection crite
 
 ## What Each Playbook Contains
 
-???:
+Each playbook covers the following:
 
 - **Detection criteria** - Wazuh rule IDs and Sysmon event IDs that trigger the playbook
 - **Triage questions** - first five questions to answer within five minutes of alert
 - **Decision tree** - Mermaid diagram with branching containment logic
-- **Escalation matrix** - L1 → L2 → L3 → CISO triggers and handover requirements
-- **PICERL phases** - all six phases with actual commands at each step
+- **Escalation matrix** - L1 -> L2 -> L3 -> CISO triggers and handover requirements
+- **ISO 27001 lifecycle phases** - Identification, Protection, Detection, Response and Recovery, with actual commands at each step
 - **Recovery validation checklist** - explicit sign-off criteria before returning to production
 - **UK GDPR / ICO tripwires** - 72-hour notification obligations flagged per scenario
 - **Known detection gaps** - what the stack misses and what would close each gap
@@ -93,6 +93,10 @@ ir-playbooks/
 │   │   ├── playbook.md
 │   │   └── automation/
 │   │       └── collect-evidence.sh
+│   ├── brute-force/
+│   │   ├── playbook.md
+│   │   └── automation/
+│   │       └── hunt-failed-logons.ps1
 │   ├── malware-outbreak/
 │   │   ├── playbook.md
 │   │   └── automation/
@@ -154,7 +158,7 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 - **Incident Response** - end-to-end case lifecycle from detection through lessons learned
 - **Detection Engineering** - Wazuh rule ID mapping, Sysmon event correlation, FIM tuning
-- **Threat Intelligence** - manual IOC extraction and enrichment via VirusTotal, AbuseIPDB, Shodan
+- **Threat Intelligence** - manual IOC extraction and enrichment via VirusTotal and AbuseIPDB
 - **UK GDPR Compliance** - ICO notification obligations integrated into each playbook
 - **Linux Administration** - VM networking, Wazuh agent deployment, shell scripting
 
@@ -174,7 +178,6 @@ Requirements:
 ## References
 
 - [ISO 27001:2022 - Information Security Management](https://www.iso.org/standard/27001)
-- [NIST SP 800-61 Rev 2 - Computer Security Incident Handling Guide](https://csrc.nist.gov/publications/detail/sp/800-61/rev-2/final)
 - [NCSC Incident Management Guidance](https://www.ncsc.gov.uk/collection/incident-management)
 - [ICO - Guide to UK GDPR](https://ico.org.uk/for-organisations/guide-to-data-protection/guide-to-the-general-data-protection-regulation-gdpr/)
 - [MITRE ATT&CK Framework](https://attack.mitre.org)
