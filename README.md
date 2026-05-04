@@ -37,13 +37,13 @@ graph TD
 
 | Scenario | Severity | MITRE Techniques | ICO Notifiable | Status |
 |----------|----------|-----------------|----------------|--------|
-| [Phishing](playbooks/phishing/playbook.md) | High | T1566.001, T1204.002, T1078 | Conditional | 🔄 In Progress |
-| [Malware Outbreak](playbooks/malware-outbreak/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional | 🔄 In Progress |
-| [Ransomware](playbooks/ransomware/playbook.md) | Critical | T1486, T1490, T1489 | Yes | 🔄 In Progress |
-| [Lateral Movement](playbooks/lateral-movement/playbook.md) | Critical | T1021.002, T1550.002, T1078 | Conditional | 🔄 In Progress |
-| [Data Exfiltration](playbooks/data-exfiltration/playbook.md) | Critical | T1048, T1041, T1567 | Yes | 🔄 In Progress |
+| [Phishing](playbooks/phishing/playbook.md) | High | T1566.001, T1204.002, T1078 | Conditional | In Progress |
+| [Malware Outbreak](playbooks/malware-outbreak/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional | In Progress |
+| [Ransomware](playbooks/ransomware/playbook.md) | Critical | T1486, T1490, T1489 | Yes | In Progress |
+| [Lateral Movement](playbooks/lateral-movement/playbook.md) | Critical | T1021.002, T1550.002, T1078 | Conditional | In Progress |
+| [Data Exfiltration](playbooks/data-exfiltration/playbook.md) | Critical | T1048, T1041, T1567 | Yes | In Progress |
 
-> Status updates to ✅ Complete after each lab scenario is run and evidence collected.
+> Status updates to Complete after each lab scenario is run and evidence collected.
 
 ---
 
