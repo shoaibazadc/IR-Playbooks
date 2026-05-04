@@ -1,19 +1,10 @@
-# IR Playbook Library - Incident Response for the Modern SOC
+# IR-Playbook-Library - Playbooks, Procedures & Compliance
 
-A hands-on incident response playbook library built from simulated attacks in an isolated homelab SOC environment. Every playbook is grounded in real lab evidence -- detection criteria reference actual Wazuh rule IDs, triage questions reflect what genuinely needed answering and known detection gaps are documented honestly.
+This playbook library covers the full incident response lifecycle: detection criteria, triage logic, containment procedures, escalation paths and post-incident reporting, all built from simulated attacks in an isolated homelab SOC environment.
 
 ---
 
 ## Architecture
-
-```mermaid
-graph TD
-    A[Kali Linux\nAttacker VM] -->|Simulated attacks| B[Windows 10 Victim\nSysmon + Wazuh Agent]
-    A -->|Simulated attacks| C[Ubuntu Server Victim\nWazuh Agent]
-    B -->|Log forwarding| D[Wazuh SIEM]
-    C -->|Log forwarding| D
-    D -->|Alerts| E[TheHive\nCase Management]
-```
 
 ---
 
@@ -21,27 +12,26 @@ graph TD
 
 | Component | Role | Version |
 |-----------|------|---------|
-| **Wazuh** | SIEM / XDR -- log ingestion, FIM, rule-based detection, alerting | 4.14 |
-| **TheHive** | Case management -- incident tracking, observables, tasks | 5.6 |
+| **Wazuh** | SIEM / XDR - log ingestion, rule-based detection, alerting | 4.14 |
+| **TheHive** | Case management - incident tracking and observables | 5.6 |
 | **Sysmon** | Deep Windows endpoint telemetry (SwiftOnSecurity config) | 15.2 |
-| **VirtualBox** | Hypervisor -- isolated internal network | 7.1 |
-| **Kali Linux** | Attacker VM -- Metasploit, msfvenom, netcat | Latest |
+| **VirtualBox** | Hypervisor - hosted isolated internal network | 7.1 |
+| **Kali Linux** | Attacker VM - Metasploit, msfvenom, netcat | 2026.1 |
 
-> IOC enrichment performed manually via VirusTotal, AbuseIPDB and Shodan. Cortex, MISP and Shuffle are documented as production integrations in each playbook but are not running in this lab due to resource constraints.
+> IOC enrichment performed manually via VirusTotal and AbuseIPDB.
 
 ---
 
 ## Playbook Coverage
 
-| Scenario | Severity | MITRE Techniques | ICO Notifiable | Status |
-|----------|----------|-----------------|----------------|--------|
-| [Phishing](playbooks/phishing/playbook.md) | High | T1566.001, T1204.002, T1078 | Conditional | In Progress |
-| [Malware Outbreak](playbooks/malware-outbreak/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional | In Progress |
-| [Ransomware](playbooks/ransomware/playbook.md) | Critical | T1486, T1490, T1489 | Yes | In Progress |
-| [Lateral Movement](playbooks/lateral-movement/playbook.md) | Critical | T1021.002, T1550.002, T1078 | Conditional | In Progress |
-| [Data Exfiltration](playbooks/data-exfiltration/playbook.md) | Critical | T1048, T1041, T1567 | Yes | In Progress |
-
-> Status updates to Complete after each lab scenario is run and evidence collected.
+| Scenario | Severity | MITRE Techniques | ICO Notifiable |
+|----------|----------|-----------------|----------------|
+| [Data Exfiltration](playbooks/data-exfiltration/playbook.md) | Critical | T1048, T1041, T1567 | Yes |
+| [Ransomware](playbooks/ransomware/playbook.md) | Critical | T1486, T1490, T1489 | Yes |
+| [Malware Outbreak](playbooks/malware-outbreak/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional |
+| [Lateral Movement](playbooks/lateral-movement/playbook.md) | Critical | T1021.002, T1550.002, T1078 | Conditional |
+| [Phishing](playbooks/phishing/playbook.md) | High | T1566.001, T1204.002, T1078 | Conditional |
+| [Brute Force](playbooks/brute-force/playbook.md) | High | T1110.001, T1110.003, T1078 | Conditional |
 
 ---
 
@@ -71,13 +61,13 @@ Exfiltration   → netcat large file transfer               → Sysmon Event ID 
 For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
 
 ### Phase 5 - Playbook Authoring
-Wrote each playbook based on what actually happened in the lab -- detection criteria, triage questions, decision trees, escalation paths, automation scripts and UK GDPR compliance checkpoints. Post-incident reports completed per scenario using the standard template.
+Wrote each playbook based on what actually happened in the lab - detection criteria, triage questions, decision trees, escalation paths, automation scripts and UK GDPR compliance checkpoints. Post-incident reports completed per scenario using the standard template.
 
 ---
 
 ## What Each Playbook Contains
 
-Every playbook follows PICERL, aligned to ISO 27001:2022 Annex A incident management controls (A.5.24--A.5.28) and NIST SP 800-61 for procedural depth:
+???:
 
 - **Detection criteria** -- Wazuh rule IDs and Sysmon event IDs that trigger the playbook
 - **Triage questions** -- first five questions to answer within five minutes of alert
@@ -153,35 +143,20 @@ ir-playbooks/
 
 This stack has real gaps, documented honestly in each playbook. The headline ones:
 
-- **Raw TCP exfiltration** is not detected by Wazuh alone -- Zeek `conn.log` large transfer alerting would close this gap
-- **Encrypted C2 over HTTPS** blends into normal web traffic -- SSL inspection or Zeek JA3 fingerprinting required
+- **Raw TCP exfiltration** is not detected by Wazuh alone - Zeek `conn.log` large transfer alerting would close this gap
+- **Encrypted C2 over HTTPS** blends into normal web traffic - SSL inspection or Zeek JA3 fingerprinting required
 - **Phishing email delivery** is not visible in Wazuh without mail gateway integration
-- **Pass-the-hash with legitimate admin accounts** requires behavioural baselining to separate from normal admin activity
-- **No automated enrichment** -- Cortex would automate the manual VirusTotal and AbuseIPDB lookups performed during each investigation
-
----
-
-## Metrics
-
-*Populated after lab runs.*
-
-| Scenario | MTTD | MTTR | Wazuh Rules Fired | ICO Notifiable |
-|----------|------|------|--------------------|----------------|
-| Phishing | TBD | TBD | TBD | Conditional |
-| Malware Outbreak | TBD | TBD | TBD | Conditional |
-| Ransomware | TBD | TBD | TBD | Yes |
-| Lateral Movement | TBD | TBD | TBD | Conditional |
-| Data Exfiltration | TBD | TBD | TBD | Yes |
+- **No automated enrichment** - Cortex would automate the manual VirusTotal and AbuseIPDB lookups performed during each investigation
 
 ---
 
 ## Skills Demonstrated
 
-- **Incident Response** -- end-to-end case lifecycle from detection through lessons learned
-- **Detection Engineering** -- Wazuh rule ID mapping, Sysmon event correlation, FIM tuning
-- **Threat Intelligence** -- manual IOC extraction and enrichment via VirusTotal, AbuseIPDB, Shodan
-- **UK GDPR Compliance** -- ICO notification obligations integrated into each playbook
-- **Linux Administration** -- VM networking, Wazuh agent deployment, shell scripting
+- **Incident Response** - end-to-end case lifecycle from detection through lessons learned
+- **Detection Engineering** - Wazuh rule ID mapping, Sysmon event correlation, FIM tuning
+- **Threat Intelligence** - manual IOC extraction and enrichment via VirusTotal, AbuseIPDB, Shodan
+- **UK GDPR Compliance** - ICO notification obligations integrated into each playbook
+- **Linux Administration** - VM networking, Wazuh agent deployment, shell scripting
 
 ---
 
@@ -193,13 +168,6 @@ Requirements:
 - Host machine with 8 GB RAM minimum (16 GB recommended)
 - VirtualBox 7.1
 - Internet access for manual IOC enrichment
-
----
-
-## Related Projects
-
-- [Network Security Lab](https://github.com/[YOUR_USERNAME]/network-security-lab) -- OPNsense + Suricata + Zeek, closes the network-layer detection gaps referenced in these playbooks
-- [Detection Engineering Portfolio](https://github.com/[YOUR_USERNAME]/detection-engineering) -- Sigma rules and custom Wazuh rule development
 
 ---
 
