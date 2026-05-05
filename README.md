@@ -146,11 +146,16 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 ## Skills Demonstrated
 
-- **Incident Response** - end-to-end case lifecycle from detection through lessons learned
-- **Detection Engineering** - Wazuh rule ID mapping, Sysmon event correlation, FIM tuning
-- **Threat Intelligence** - manual IOC extraction and enrichment via VirusTotal and AbuseIPDB
-- **UK GDPR Compliance** - ICO notification obligations integrated into each playbook
-- **Linux Administration** - VM networking, Wazuh agent deployment, shell scripting
+
+
+## Sills Demonstrated
+
+- **SIEM Operations** - Wazuh rule mapping, Sysmon event correlation and alert triage
+- **Incident Response** - end-to-end case lifecycle across six MITRE ATT&CK-mapped scenarios
+- **Threat Intelligence** - IOC enrichment via VirusTotal and AbuseIPDB
+- **Adversary Emulation** - MITRE ATT&CK simulation using Metasploit, msfvenom and netcat
+- **UK Regulatory Compliance** - ICO notification obligations and ISO 27001 lifecycle phases integrated into each playbook
+- **Scripting & Automation** - PowerShell and Bash for host isolation, evidence collection and threat hunting
 
 ---
 
