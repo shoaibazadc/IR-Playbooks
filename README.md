@@ -77,44 +77,44 @@ Post-incident reports completed per scenario using the standard template.
 ## Repository Structure
 
 ```
-ir-playbooks/
-├── README.md
+ir-playbook-library/
+├── README.md                           
+├── docs/
+│   ├── setup.md                        # Full deployment guide
+│   ├── architecture.png                # Environment diagram
+│   └── screenshots/
+│       ├── sysmon-process-tree.png     
+│       ├── thehive-case-phishing.png   
+│       ├── virustotal-hash-result.png  
+│       ├── wazuh-fim-alert.png         
+│       └── wazuh-logon-type3.png       
 ├── playbooks/
 │   ├── phishing/
-│   │   ├── playbook.md
-│   │   └── automation/
-│   │       └── collect-evidence.sh
+│   │   ├── playbook.md                
+│   │   └── collect-evidence.sh        # Evidence collection script
 │   ├── brute-force/
-│   │   ├── playbook.md
-│   │   └── automation/
-│   │       └── hunt-failed-logons.ps1
+│   │   ├── playbook.md                
+│   │   └── hunt-failed-logons.ps1     # Failed logon hunting script
+│   ├── ransomware/
+│   │   ├── playbook.md                
+│   │   ├── isolate-host.sh            # Host isolation script
+│   │   └── hunt-encrypted-files.ps1   # Encrypted file detection script
 │   ├── malware-outbreak/
 │   │   ├── playbook.md
-│   │   └── automation/
-│   │       ├── volatile-collection.ps1
-│   │       └── isolate-host.sh
-│   ├── ransomware/
-│   │   ├── playbook.md
-│   │   └── automation/
-│   │       ├── isolate-host.sh
-│   │       └── hunt-encrypted-files.ps1
-│   ├── lateral-movement/
-│   │   ├── playbook.md
-│   │   └── automation/
-│   │       └── hunt-logon-type3.ps1
+│   │   ├── volatile-collection.ps1
+│   │   └── isolate-host.sh
 │   └── data-exfiltration/
 │       ├── playbook.md
-│       └── automation/
-│           └── hunt-staging-files.ps1
+│       └── hunt-staging-files.ps1
+│   └── lateral-movement/
+│       ├── playbook.md                
+│       └── hunt-logon-type3.ps1       # Remote logon hunting script
 ├── templates/
-│   ├── playbook-template.md
+│   └── playbook-template.md           # Standard playbook template
 │   ├── post-incident-report-template.md
 │   └── escalation-matrix-template.md
-├── mitre-mapping/
-│   ├── navigator-layer.json
-│   └── navigator-layer.png
 └── metrics/
-    └── scenario-results.md
+    └── scenario-results.md           # Detection / response outcomes
 ```
 
 ---
@@ -128,7 +128,6 @@ ir-playbooks/
 | `virustotal-hash-result.png` | Manual VirusTotal lookup on malware hash |
 | `sysmon-process-tree.png` | Sysmon Event ID 1 process tree showing malware parent chain |
 | `wazuh-logon-type3.png` | Wazuh alert on Event ID 4624 Logon Type 3 during lateral movement |
-| `mitre-navigator-layer.png` | ATT&CK navigator layer showing full technique coverage |
 
 > All screenshots in [`docs/screenshots/`](docs/screenshots/)
 
