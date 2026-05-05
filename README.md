@@ -85,9 +85,12 @@ ir-playbook-library/
 │   └── screenshots/
 │       ├── sysmon-process-tree.png     
 │       ├── thehive-case-phishing.png   
+│       ├── thehive-case-observable.png 
 │       ├── virustotal-hash-result.png  
+│       ├── wazuh-dashboard-overview.png
 │       ├── wazuh-fim-alert.png         
-│       └── wazuh-logon-type3.png       
+│       ├── wazuh-brute-force-alert.png 
+│       └── wazuh-logon-type3.png  
 ├── playbooks/
 │   ├── phishing/
 │   │   ├── playbook.md                
