@@ -114,7 +114,7 @@ ir-playbook-library/
 │   ├── post-incident-report-template.md
 │   └── escalation-matrix-template.md
 ├── reports/
-│   └── scenario-results.md           # Detection / response outcome
+│   └── scenario-results.md            # Detection / response outcome
 └── README.md     
 ```
 
