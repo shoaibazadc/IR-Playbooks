@@ -144,7 +144,7 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 ---
 
-## Sills Demonstrated
+## Skills Demonstrated
 
 - **Incident Response** - end-to-end case lifecycle across six MITRE ATT&CK-mapped scenarios
 - **Threat Intelligence** - IOC enrichment via VirusTotal and AbuseIPDB
