@@ -144,10 +144,6 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 ---
 
-## Skills Demonstrated
-
-
-
 ## Sills Demonstrated
 
 - **Incident Response** - end-to-end case lifecycle across six MITRE ATT&CK-mapped scenarios
