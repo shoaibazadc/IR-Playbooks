@@ -26,7 +26,7 @@ This playbook library covers the full incident response lifecycle: detection cri
 |----------|----------|-----------------|----------------|
 | [Data Exfiltration](playbooks/data-exfiltration/playbook.md) | Critical | T1048, T1041, T1567 | Yes |
 | [Ransomware](playbooks/ransomware/playbook.md) | Critical | T1486, T1490, T1489 | Yes |
-| [Malware Outbreak](playbooks/malware-outbreak/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional |
+| [Malware](playbooks/malware/playbook.md) | Critical | T1059, T1071, T1055, T1547 | Conditional |
 | [Lateral Movement](playbooks/lateral-movement/playbook.md) | Critical | T1021.002, T1550.002, T1078 | Conditional |
 | [Phishing](playbooks/phishing/playbook.md) | High | T1566.001, T1204.002, T1078 | Conditional |
 | [Brute Force](playbooks/brute-force/playbook.md) | High | T1110.001, T1110.003, T1078 | Conditional |
@@ -98,7 +98,7 @@ ir-playbook-library/
 │   │   ├── playbook.md                
 │   │   ├── isolate-host.sh            # Host isolation script
 │   │   └── hunt-encrypted-files.ps1   # Encrypted file detection script
-│   ├── malware-outbreak/
+│   ├── malware/
 │   │   ├── playbook.md
 │   │   ├── volatile-collection.ps1
 │   │   └── isolate-host.sh
