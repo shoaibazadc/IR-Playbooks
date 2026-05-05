@@ -68,13 +68,10 @@ graph TD
 ### Identification
 Confirm the alert is a true positive. Review the Sysmon Event ID 1 process tree to establish the parent-child chain. Identify the triggering user account and endpoint.
 
-```bash
-# Wazuh -- query process creation events for the affected host
-# Filter by agent.name and data.win.eventdata.parentImage containing WINWORD, EXCEL, or mshta
-```
+Filter by agent.name and data.win.eventdata.parentImage containing WINWORD, EXCEL, or mshta
 
 ```kql
-data.win.eventdata.parentImage: "*WINWORD*" AND data.win.system.eventID: "1"
+data.win.eventdata.parentImage: "*WINWORD*" AND data.win.system.eventID: "1" AND agent.name: "HOSTNAME"
 ```
 
 Open a TheHive case. Set severity to High. Add the following as observables:
@@ -103,22 +100,11 @@ Set-ADUser -Identity "username" -Description "DISABLED: Phishing investigation $
 **Block identified IOCs at the network boundary** -- submit to firewall deny list if perimeter controls exist.
 
 ### Detection
-Expand scope. Determine whether other endpoints received the same attachment or executed the same process chain.
 
-```powershell
-# Hunt for the same parent-child process chain across all Windows hosts
-Get-WinEvent -ComputerName $targets -FilterHashtable @{
-    LogName='Microsoft-Windows-Sysmon/Operational'
-    Id=1
-} | Where-Object { $_.Message -match "ParentImage.*WINWORD" } |
-Select-Object TimeCreated, MachineName, Message
-```
+Check whether other endpoints triggered the same alert. In Wazuh, navigate to Discover and remove the agent.name filter from the Phase 1 query so it runs across all agents:
 
-```powershell
-# Hunt for the dropped file hash across endpoints
-Get-ChildItem -Path C:\Users -Recurse -ErrorAction SilentlyContinue |
-Get-FileHash -Algorithm SHA256 |
-Where-Object { $_.Hash -eq "SHA256_HASH_HERE" }
+```kql
+data.win.eventdata.parentImage: "*WINWORD*" AND data.win.system.eventID: "1"
 ```
 
 Submit attachment hash to VirusTotal manually. Document the detection ratio and any identified malware family in the TheHive case.
@@ -180,14 +166,14 @@ Before returning the endpoint to production, validate the following:
 
 **Recovery Validation Checklist**
 
-- [ ] Malicious file removed or endpoint reimaged
-- [ ] No persistence mechanisms present (Run keys, scheduled tasks, services)
-- [ ] User account re-enabled with new credentials
-- [ ] Multi-factor authentication confirmed active on account
-- [ ] Wazuh agent reporting normally from endpoint
-- [ ] No further suspicious process creation events in last 24 hours
-- [ ] IOCs added to block list (firewall, DNS, proxy where applicable)
-- [ ] TheHive case updated with resolution notes
+- Malicious file removed or endpoint reimaged
+- No persistence mechanisms present (Run keys, scheduled tasks, services)
+- User account re-enabled with new credentials
+- Multi-factor authentication confirmed active on account
+- Wazuh agent reporting normally from endpoint
+- No further suspicious process creation events in last 24 hours
+- IOCs added to block list (firewall, DNS, proxy where applicable)
+- TheHive case updated with resolution notes
 
 ```powershell
 # Verify no persistence in Run keys
