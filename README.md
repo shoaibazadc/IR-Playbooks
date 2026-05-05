@@ -52,20 +52,11 @@ Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 704
 Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
-> IOC enrichment performed manually via VirusTotal and AbuseIPDB.
-> IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB, with results documented in the corresponding TheHive case.
-
 ### Phase 4 - Detection and Triage
-For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
+Triaged the incident for each scenario: created cases, added observables and performed manual IOC enrichment. Also Documented Wazuh rule IDs, Sysmon events and Wazuh dashboard queries used during the investigation.
 
 ### Phase 5 - Playbook Authoring
-Wrote each playbook based on what actually happened in the lab - detection criteria, triage questions, decision trees, escalation paths, automation scripts and UK GDPR compliance checkpoints. Post-incident reports completed per scenario using the standard template.
-
----
-
-## What Each Playbook Contains
-
-Each playbook covers the following:
+Wrote each playbook based on what actually happened in the lab. Each playbook contains:
 
 - **Detection criteria** - Wazuh rule IDs and Sysmon event IDs that trigger the playbook
 - **Triage questions** - first five questions to answer within five minutes of alert
@@ -78,6 +69,8 @@ Each playbook covers the following:
 - **Automation scripts** - shell and PowerShell for containment, evidence collection, hunting
 - **IOC template** - pre-formatted for TheHive ingestion
 - **Real-world reference** - UK-relevant incident tied to each scenario
+
+Post-incident reports completed per scenario using the standard template.
 
 ---
 
