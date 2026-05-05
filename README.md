@@ -49,7 +49,7 @@ Phishing       -> Malicious .hta / macro-enabled Word doc  -> Sysmon Event ID 1,
 Malware        -> Metasploit meterpreter reverse shell     -> Sysmon Event ID 1, 3
 Ransomware     -> RanSim / Python file encryptor           -> Wazuh FIM mass modification
 Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 7045
-Brute Force    -> Hydra credential spray against RDP/SMB    -> Event ID 4625, 4740
+Brute Force    -> Hydra credential spray against RDP/SMB   -> Event ID 4625, 4740
 Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
