@@ -66,8 +66,8 @@ Wrote each playbook based on what happened in the lab. Each playbook contains:
 - **ISO 27001 lifecycle phases** - Identification, Protection, Detection, Response and Recovery
 - **Recovery validation checklist** - sign-off criteria before returning to production
 - **UK GDPR / ICO compliance** - 72-hour notification obligations flagged per scenario
-- **Known detection gaps** - what the stack misses and what would close each gap
-- **Automation scripts** - shell and PowerShell for containment, evidence collection, hunting
+- **Known detection gaps** - what the stack misses and what would close the gap
+- **Automation scripts** - shell and PowerShell for containment, evidence collection, threat hunting
 - **IOC template** - pre-formatted for TheHive ingestion
 - **Real-world reference** - UK-relevant incident tied to each scenario
 
