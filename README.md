@@ -54,7 +54,7 @@ Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 704
 Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
-IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB during each investigation, with results documented in the corresponding TheHive case.
+IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB, with results documented in the corresponding TheHive case.
 
 ### Phase 4 - Detection and Triage
 For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
