@@ -148,7 +148,7 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 - **Incident Response** - end-to-end case lifecycle across six MITRE ATT&CK-mapped scenarios
 - **Threat Intelligence** - IOC enrichment via VirusTotal and AbuseIPDB
-- **Adversary Emulation** - MITRE ATT&CK simulation using Metasploit, msfvenom and netcat
+- **Adversary Emulation** - attack simulation using Metasploit, msfvenom and netcat
 - **UK Regulatory Compliance** - ICO notification obligations and ISO 27001 lifecycle phases integrated into each playbook
 - **Scripting & Automation** - PowerShell and Bash for host isolation, evidence collection and threat hunting
 
