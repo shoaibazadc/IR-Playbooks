@@ -206,7 +206,6 @@ Get-ScheduledTask | Where-Object { $_.TaskPath -notlike "\Microsoft\*" } |
 |-----|--------|-------------|
 | Phishing email delivery not visible in Wazuh | Cannot detect the initial lure without mail gateway integration | Integrate mail gateway logs or Microsoft 365 Defender alerts into Wazuh |
 | Browser-based credential submission not logged | Credential theft via fake login page leaves no Sysmon artefact | DNS logging or proxy logs required to correlate with phishing domain |
-| HTML smuggling payloads | Attachment may not trigger Sysmon Event ID 11 if payload assembled in memory | Memory analysis or EDR with process injection detection required |
 
 ---
 
