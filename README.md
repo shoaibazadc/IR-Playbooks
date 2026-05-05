@@ -101,16 +101,16 @@ ir-playbook-library/
 │   │   └── hunt-encrypted-files.ps1   # Encrypted file detection script
 │   ├── malware/
 │   │   ├── playbook.md
-│   │   ├── volatile-collection.ps1
-│   │   └── isolate-host.sh
+│   │   ├── volatile-collection.ps1    # Volatile memory collection script
+│   │   └── isolate-host.sh            # Host isolation script
 │   ├─── data-exfiltration/
 │   │   ├── playbook.md
-│   │   └── hunt-staging-files.ps1
+│   │   └── hunt-staging-files.ps1     # Staged file and large transfer hunting script
 │   └── lateral-movement/
 │       ├── playbook.md                
 │       └── hunt-logon-type3.ps1       # Remote logon hunting script
 ├── templates/
-│   ├── playbook-template.md           # Standard playbook template
+│   ├── playbook-template.md          
 │   ├── post-incident-report-template.md
 │   └── escalation-matrix-template.md
 ├── reports/
