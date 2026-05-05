@@ -124,11 +124,14 @@ ir-playbook-library/
 
 | Screenshot | Description |
 |------------|-------------|
+| `wazuh-dashboard-overview.png` | Wazuh dashboard showing live agent telemetry and alert activity |
 | `wazuh-fim-alert.png` | FIM mass modification alert firing during ransomware simulation |
-| `thehive-case-phishing.png` | TheHive case with observables and manual enrichment results |
-| `virustotal-hash-result.png` | Manual VirusTotal lookup on malware hash |
-| `sysmon-process-tree.png` | Sysmon Event ID 1 process tree showing malware parent chain |
-| `wazuh-logon-type3.png` | Wazuh alert on Event ID 4624 Logon Type 3 during lateral movement |
+| `wazuh-brute-force-alert.png` | Wazuh alert on Event ID 4625 repeated failed logons during brute force simulation |
+| `wazuh-logon-type3.png` | Wazuh alert on Event ID 4624 Logon Type 3 during lateral movement simulation |
+| `thehive-case-phishing.png` | TheHive case with observables and enrichment results |
+| `thehive-case-observable.png` | TheHive observable enrichment showing IOC lookup results |
+| `virustotal-hash-result.png` | VirusTotal lookup on malware hash |
+| `sysmon-process-tree.png` | Sysmon Event ID 1 process tree during malware simulation |
 
 > All screenshots in [`docs/screenshots/`](docs/screenshots/)
 
