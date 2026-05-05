@@ -57,7 +57,7 @@ graph TD
 | Level | Trigger | Handover Requirement |
 |-------|---------|----------------------|
 | L1 | Alert received | TheHive case: alert source, email headers, sender/recipient, verdict |
-| L2 | Child process or file dropped confirmed | TheHive case ID, Sysmon event chain, process tree, triage findings |
+| L2 | Child process confirmed or file dropped | TheHive case ID, Sysmon event chain, process tree, triage findings |
 | L3 | Active C2 connection or credential compromise | IOC list, affected accounts, network scope, lateral movement assessment |
 | CISO | Personal data accessed or ICO notification required | Written summary: timeline, data types, affected subjects, containment status |
 
