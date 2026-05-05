@@ -15,7 +15,7 @@
 | Sysmon Event ID 3 | Network Connect | Office process or mshta.exe initiating outbound connection |
 | Wazuh Rule ? | Windows Defender alert | Malicious file detected on endpoint |
 | Sysmon Event ID 11 | File Create | Suspicious file written to %TEMP%, %APPDATA%, or Downloads |
-| Wazuh Rule 60106 | Windows Event Log | User account locked out following credential submission |
+| Wazuh Rule 60106 | Windows Event Log | User account locked out after credential submission |
 
 ---
 
