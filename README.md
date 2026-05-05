@@ -18,8 +18,6 @@ This playbook library covers the full incident response lifecycle: detection cri
 | **VirtualBox** | Hypervisor - hosted isolated internal network | 7.1 |
 | **Kali Linux** | Attacker VM - Metasploit, msfvenom, netcat | 2026.1 |
 
-> IOC enrichment performed manually via VirusTotal and AbuseIPDB.
-
 ---
 
 ## Playbook Coverage
@@ -54,7 +52,8 @@ Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 704
 Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
-IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB, with results documented in the corresponding TheHive case.
+> IOC enrichment performed manually via VirusTotal and AbuseIPDB.
+> IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB, with results documented in the corresponding TheHive case.
 
 ### Phase 4 - Detection and Triage
 For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
