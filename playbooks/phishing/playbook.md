@@ -39,7 +39,7 @@ graph TD
     C -- Yes --> E[Isolate endpoint immediately]
     C -- No --> F{Suspicious file dropped?}
     D --> F
-    F -- Yes --> G[Collect data, isolate endpoint]
+    F -- Yes --> G[Gather data, isolate endpoint]
     F -- No --> H[Escalate to L2 for deeper triage]
     E --> I{Credentials entered by user?}
     G --> I
