@@ -37,25 +37,24 @@ This playbook library covers the full incident response lifecycle: detection cri
 
 ## Project Phases
 
-### Phase 1 - Lab Environment
-Deployed attacker and victim VMs in an isolated VirtualBox internal network. Installed Sysmon on the Windows victim using the SwiftOnSecurity config and confirmed Wazuh agents reporting on both endpoints before running any scenarios.
+### Phase 1 - Infrastructure
+Deployed Wazuh and TheHive in an Ubuntu Server VM (`soc-core`). Configured an isolated VirtualBox NAT network (`soc-net`, `10.0.5.0/24`) with port-forwarding rules to access the services on the host.
 
-### Phase 2 - Integrations
-Connected core SOC stack components:
-- **Wazuh -> TheHive** - alert forwarding for case creation
-
-IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB during each investigation, with results documented in the corresponding TheHive case.
+### Phase 2 - Endpoint Configuration
+Deployed attacker and victim VMs as Wazuh agents. Installed Sysmon with the SwiftOnSecurity config on the Windows machine and configured Wazuh to ingest `Microsoft-Windows-Sysmon/Operational` event channel logs.
 
 ### Phase 3 - Attack Simulation
 Ran each scenario on the victim VMs before writing the corresponding playbook. Tools and techniques used per scenario:
 
 ```
-Phishing       -> Malicious .hta / macro-enabled Word doc -> Sysmon Event ID 1, 3
+Phishing       -> Malicious .hta / macro-enabled Word doc  -> Sysmon Event ID 1, 3
 Malware        -> Metasploit meterpreter reverse shell     -> Sysmon Event ID 1, 3
 Ransomware     -> RanSim / Python file encryptor           -> Wazuh FIM mass modification
 Lateral Move   -> Metasploit PSExec / pass-the-hash        -> Event ID 4624, 7045
 Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
+
+IOC enrichment handled manually: observables submitted to VirusTotal and AbuseIPDB during each investigation, with results documented in the corresponding TheHive case.
 
 ### Phase 4 - Detection and Triage
 For each scenario, triaged the incident through TheHive: created cases, added observables and performed manual enrichment. Documented Wazuh rule IDs, Sysmon events and Kibana queries used during investigation.
