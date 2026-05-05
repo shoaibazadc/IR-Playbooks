@@ -165,12 +165,12 @@ This stack has real gaps, documented honestly in each playbook. The headline one
 
 ## Setup
 
-Full deployment notes in [`docs/setup.md`](docs/setup.md).
+Full deployment notes are in [`docs/setup.md`](docs/setup.md).
 
 Requirements:
-- Host machine with 8 GB RAM minimum (16 GB recommended)
+- Host machine with 16 GB+ RAM recommended
 - VirtualBox 7.1
-- Internet access for manual IOC enrichment
+- Internet access
 
 ---
 
