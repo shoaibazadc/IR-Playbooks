@@ -136,7 +136,7 @@ ir-playbook-library/
 | `virustotal-hash-result.png` | VirusTotal lookup on malware hash |
 | `sysmon-process-tree.png` | Sysmon Event ID 1 process tree during malware simulation |
 
-> All screenshots in [`docs/screenshots/`](docs/screenshots/)
+> All screenshots are in [`docs/screenshots/`](docs/screenshots/)
 
 ---
 
