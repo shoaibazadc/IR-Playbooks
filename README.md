@@ -112,7 +112,7 @@ ir-playbook-library/
 │   ├── playbook-template.md           # Standard playbook template
 │   ├── post-incident-report-template.md
 │   └── escalation-matrix-template.md
-├── metrics/
+├── reports/
 │   └── scenario-results.md           # Detection / response outcome
 └── README.md     
 ```
