@@ -53,7 +53,7 @@ Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ```
 
 ### Phase 4 - Detection and Triage
-Triaged the incident for each scenario: created cases, added observables and performed manual IOC enrichment. Also Documented Wazuh rule IDs, Sysmon events and Wazuh dashboard queries used during the investigation.
+Triaged the incident for each scenario: created cases, added observables and performed IOC enrichment. Also Documented Wazuh rule IDs, Sysmon events and Wazuh dashboard queries used during the investigation.
 
 ### Phase 5 - Playbook Creation
 Wrote each playbook based on what happened in the lab. Each playbook contains:
@@ -62,7 +62,7 @@ Wrote each playbook based on what happened in the lab. Each playbook contains:
 - **Triage questions** - first five questions to answer within five minutes of alert
 - **Decision tree** - Mermaid diagram with branching containment logic
 - **Escalation matrix** - L1 -> L2 -> L3 -> CISO triggers and handover requirements
-- **ISO 27001 lifecycle phases** - Identification, Protection, Detection, Response and Recovery, with actionable commands at each step
+- **ISO 27001 lifecycle phases** - Identification, Protection, Detection, Response and Recovery
 - **Recovery validation checklist** - sign-off criteria before returning to production
 - **UK GDPR / ICO compliance** - 72-hour notification obligations flagged per scenario
 - **Known detection gaps** - what the stack misses and what would close each gap
