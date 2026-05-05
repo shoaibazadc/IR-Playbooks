@@ -77,8 +77,7 @@ Post-incident reports completed per scenario using the standard template.
 ## Repository Structure
 
 ```
-ir-playbook-library/
-├── README.md                           
+ir-playbook-library/                      
 ├── docs/
 │   ├── setup.md                        # Full deployment guide
 │   ├── architecture.png                # Environment diagram
@@ -103,18 +102,19 @@ ir-playbook-library/
 │   │   ├── playbook.md
 │   │   ├── volatile-collection.ps1
 │   │   └── isolate-host.sh
-│   └── data-exfiltration/
-│       ├── playbook.md
-│       └── hunt-staging-files.ps1
+│   ├─── data-exfiltration/
+│   │   ├── playbook.md
+│   │   └── hunt-staging-files.ps1
 │   └── lateral-movement/
 │       ├── playbook.md                
 │       └── hunt-logon-type3.ps1       # Remote logon hunting script
 ├── templates/
-│   └── playbook-template.md           # Standard playbook template
+│   ├── playbook-template.md           # Standard playbook template
 │   ├── post-incident-report-template.md
 │   └── escalation-matrix-template.md
-└── metrics/
-    └── scenario-results.md           # Detection / response outcomes
+├── metrics/
+│   └── scenario-results.md           # Detection / response outcome
+└── README.md     
 ```
 
 ---
