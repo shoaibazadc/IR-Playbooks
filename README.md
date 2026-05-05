@@ -39,7 +39,7 @@ This playbook library covers the full incident response lifecycle: detection cri
 Deployed Wazuh and TheHive in an Ubuntu Server VM (`soc-core`). Configured an isolated VirtualBox NAT network (`soc-net`, `10.0.5.0/24`) with port-forwarding rules to access the services on the host.
 
 ### Phase 2 - Endpoint Configuration
-Deployed attacker and victim VMs as Wazuh agents. Installed Sysmon with the SwiftOnSecurity config on the Windows machine and configured Wazuh to ingest `Microsoft-Windows-Sysmon/Operational` event channel logs.
+Deployed victim VMs as Wazuh agents and an attacker VM. Installed Sysmon with the SwiftOnSecurity config on the Windows machine and configured Wazuh to ingest `Microsoft-Windows-Sysmon/Operational` event channel logs.
 
 ### Phase 3 - Attack Simulation
 Ran each scenario on the victim VMs before writing the corresponding playbook. Tools and techniques used per scenario:
