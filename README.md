@@ -55,7 +55,7 @@ Exfiltration   -> netcat large file transfer               -> Sysmon Event ID 3
 ### Phase 4 - Detection and Triage
 Triaged the incident for each scenario: created cases, added observables and performed manual IOC enrichment. Also Documented Wazuh rule IDs, Sysmon events and Wazuh dashboard queries used during the investigation.
 
-### Phase 5 - Playbook Authoring
+### Phase 5 - Playbook Creation
 Wrote each playbook based on what happened in the lab. Each playbook contains:
 
 - **Detection criteria** - Wazuh rule IDs and Sysmon event IDs that trigger the playbook
