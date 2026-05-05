@@ -142,7 +142,7 @@ ir-playbook-library/
 
 ## Detection Gaps
 
-This stack has real gaps, documented honestly in each playbook. The headline ones:
+This stack's known detection limitations are as follows:
 
 - **Raw TCP exfiltration** is not detected by Wazuh alone - Zeek `conn.log` large transfer alerting would close this gap
 - **Encrypted C2 over HTTPS** blends into normal web traffic - SSL inspection or Zeek JA3 fingerprinting required
