@@ -15,6 +15,7 @@ This playbook library covers the full incident response lifecycle: detection cri
 | **Wazuh** | SIEM / XDR - log ingestion, rule-based detection, alerting | 4.14 |
 | **TheHive** | Case management - incident tracking and observables | 5.6 |
 | **Sysmon** | Deep Windows endpoint telemetry (SwiftOnSecurity config) | 15.2 |
+| **Zeek** | Network traffic analysis - conn.log, dns.log, http.log | 7.0 |
 | **VirtualBox** | Hypervisor - hosted isolated internal network | 7.1 |
 | **Kali Linux** | Attacker VM - Metasploit, msfvenom, netcat | 2026.1 |
 
@@ -36,7 +37,7 @@ This playbook library covers the full incident response lifecycle: detection cri
 ## Project Phases
 
 ### Phase 1 - Infrastructure
-Deployed Wazuh and TheHive in an Ubuntu Server VM (`soc-core`). Configured an isolated VirtualBox NAT network (`soc-net`, `10.0.5.0/24`) with port-forwarding rules to access the services on the host.
+Deployed Wazuh, TheHive and Zeek in an Ubuntu Server VM (`soc-core`). Configured an isolated VirtualBox NAT network (`soc-net`, `10.0.5.0/24`) with port-forwarding rules to access the services on the host.
 
 ### Phase 2 - Endpoint Configuration
 Deployed victim VMs as Wazuh agents alongside an attacker VM. Installed Sysmon with the SwiftOnSecurity config on the Windows machine and configured Wazuh to ingest `Microsoft-Windows-Sysmon/Operational` event channel logs.
@@ -144,10 +145,9 @@ ir-playbook-library/
 
 This stack's known detection limitations are as follows:
 
-- **Raw TCP exfiltration** is not detected by Wazuh alone - Zeek `conn.log` large transfer alerting would close this gap
-- **Encrypted C2 over HTTPS** blends into normal web traffic - SSL inspection or Zeek JA3 fingerprinting required
-- **Phishing email delivery** is not visible in Wazuh without mail gateway integration
-- **No automated enrichment** - Cortex would automate the manual VirusTotal and AbuseIPDB lookups performed during each investigation
+- **Raw TCP exfiltration** - Wazuh cannot detect large files being transferred out over raw TCP connections
+- **Encrypted C2 over HTTPS** - command and control traffic sent over HTTPS looks identical to normal web browsing, SSL inspection is needed to rectify the situation
+- **Phishing email delivery** - Wazuh has no visibility into email traffic, a mail gateway integration is needed to rectify the situation
 
 ---
 
