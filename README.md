@@ -141,16 +141,6 @@ ir-playbook-library/
 
 ---
 
-## Detection Gaps
-
-This stack's known detection limitations are as follows:
-
-- **Raw TCP exfiltration** - Wazuh cannot detect large files being transferred out over raw TCP connections
-- **Encrypted C2 over HTTPS** - command and control traffic sent over HTTPS looks identical to normal web browsing, SSL inspection is needed to rectify the situation
-- **Phishing email delivery** - Wazuh has no visibility into email traffic, a mail gateway integration is needed to rectify the situation
-
----
-
 ## Skills Demonstrated
 
 - **Incident Response** - end-to-end case lifecycle across six MITRE ATT&CK-mapped scenarios
