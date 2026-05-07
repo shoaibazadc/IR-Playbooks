@@ -167,6 +167,14 @@ Add the following line:
 @reboot /usr/bin
 ```
 
+#### Configure Wazuh to Ingest Zeek Logs
+
+On the Wazuh Manager VM, open `ossec.conf` for editing:
+
+```bash
+sudo nano /var/ossec/etc/ossec.conf
+```
+
 Add the following blocks before the closing `</ossec_config>` tag:
 
 ```xml
@@ -186,6 +194,7 @@ Add the following blocks before the closing `</ossec_config>` tag:
 </localfile>
 ```
 
+Save the file and restart the Wazuh agent:
 Save the file and restart the Wazuh Manager:
 
 ```bash
