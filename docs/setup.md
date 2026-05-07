@@ -187,7 +187,7 @@ Add the following blocks before the closing `</ossec_config>` tag:
 </localfile>
 ```
 
-Restart the Wazuh Manager:
+Save the file and restart the Wazuh agent:
 
 ```bash
 sudo systemctl restart wazuh-manager
