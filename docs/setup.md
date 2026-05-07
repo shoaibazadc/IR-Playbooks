@@ -114,13 +114,11 @@ Install Zeek on the VM:
 sudo apt install -y zeek
 ```
 
-Identify the internal network interface:
+Identify the internal network interface, The interface with IP `10.0.5.x` is the one to monitor:
 
 ```bash
 ip addr
 ```
-
-> The interface with IP `10.0.5.x` is the one to monitor. 
 
 Open Zeek's `node.cfg`:
 
