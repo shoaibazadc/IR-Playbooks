@@ -16,8 +16,8 @@ Once the network is created, add the following port forwarding rules so services
 |---------|----------|-----------|-----------|------------|
 | Wazuh   | TCP      | 127.0.0.1 | 8443      | 443        |
 | TheHive | TCP      | 127.0.0.1 | 9000      | 9000       |
-| SSH-Core    | TCP      | 127.0.0.1 | 2210      | 10.0.5.10  | 22         |
-| SSH-Linux   | TCP      | 127.0.0.1 | 2230      | 10.0.5.30  | 22         |
+| SSH-Core    | TCP      | 127.0.0.1 | 2210  | 22         |
+| SSH-Linux   | TCP      | 127.0.0.1 | 2230  | 22         |
 
 > Guest IPs are assigned by DHCP. Note the IP of the VM after it boots and update the Guest IP column accordingly.
 
