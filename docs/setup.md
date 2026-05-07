@@ -53,3 +53,54 @@ sudo systemctl status wazuh-dashboard wazuh-indexer wazuh-manager
 The Wazuh dashboard is accessible at `https://127.0.0.1:8443` from your host machine.
 
 ---
+
+### Step 3: TheHive & Cortex Installation
+
+TheHive and Cortex are deployed together using StrangeeBee's official Docker Compose repository.
+
+First, install Docker on the VM:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+Verify Docker Compose is available:
+
+```bash
+docker compose version
+```
+
+Clone the official repository and navigate to the testing profile, which includes Cortex:
+
+```bash
+git clone https://github.com/StrangeBeeCorp/docker.git
+cd docker/testing
+```
+
+Run the initialisation script:
+
+```bash
+./scripts/init.sh
+```
+
+Before starting the services, open `docker-compose.yml` and change the nginx port mapping from `443:443` to `4443:443` to avoid a port conflict:
+
+```bash
+nano docker-compose.yml
+```
+
+Start the services:
+
+```bash
+docker compose up -d
+docker compose ps
+```
+
+TheHive is accessible at `http://127.0.0.1:9000/thehive`. Log in with the default credentials `admin@thehive.local / secret`.
+
+---
