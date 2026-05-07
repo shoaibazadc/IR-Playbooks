@@ -104,3 +104,93 @@ docker compose ps
 TheHive is accessible at `http://127.0.0.1:9000/thehive`. Log in with the default credentials `admin@thehive.local / secret`.
 
 ---
+
+### Step 4: Zeek Installation
+
+install Zeek on the VM:
+
+```bash
+sudo apt install -y zeek
+```
+
+Identify the name of your internal network interface:
+
+```bash
+ip addr
+```
+
+The interface with IP `10.0.5.x` is the one to monitor. Open the Zeek node config and update the interface:
+
+```bash
+sudo nano /etc/zeek/node.cfg
+```
+
+```ini
+[zeek]
+type=standalone
+host=localhost
+interface=enp0s3
+```
+
+Replace `enp0s3` with your actual interface name. Then add the lab network to Zeek's networks config:
+
+```bash
+sudo nano /etc/zeek/networks.cfg
+```
+
+```
+10.0.5.0/24    SOC Lab Network
+```
+
+Deploy Zeek and verify logs are being written:
+
+```bash
+sudo zeekctl deploy
+
+ls /opt/zeek/logs/current/
+```
+
+You should see `conn.log`, `dns.log`, and `http.log` among others. To start Zeek automatically on boot, add the following to root's crontab:
+
+```bash
+sudo crontab -e
+```
+
+```
+@reboot /usr/bin/zeekctl start
+```
+
+#### Configure Wazuh to Ingest Zeek Logs
+
+On the Wazuh Manager VM, open `ossec.conf` for editing:
+
+```bash
+sudo nano /var/ossec/etc/ossec.conf
+```
+
+Add the following blocks before the closing `</ossec_config>` tag:
+
+```xml
+<localfile>
+  <log_format>json</log_format>
+  <location>/opt/zeek/logs/current/conn.log</location>
+</localfile>
+
+<localfile>
+  <log_format>json</log_format>
+  <location>/opt/zeek/logs/current/dns.log</location>
+</localfile>
+
+<localfile>
+  <log_format>json</log_format>
+  <location>/opt/zeek/logs/current/http.log</location>
+</localfile>
+```
+
+Restart the Wazuh Manager:
+
+```bash
+sudo systemctl restart wazuh-manager
+```
+
+---
