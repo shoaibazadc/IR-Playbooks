@@ -105,25 +105,30 @@ TheHive is accessible at `http://127.0.0.1:9000/thehive`. Log in with the defaul
 
 ---
 
+
 ### Step 4: Zeek Installation
 
-install Zeek on the VM:
+Install Zeek on the VM:
 
 ```bash
 sudo apt install -y zeek
 ```
 
-Identify the name of your internal network interface:
+Identify the internal network interface:
 
 ```bash
 ip addr
 ```
 
-The interface with IP `10.0.5.x` is the one to monitor. Open the Zeek node config and update the interface:
+> The interface with IP `10.0.5.x` is the one to monitor. 
+
+Open Zeek's `node.cfg`:
 
 ```bash
 sudo nano /etc/zeek/node.cfg
 ```
+
+Update the interface value, replace `enp0s3` with the correct interface name:
 
 ```ini
 [zeek]
@@ -132,13 +137,15 @@ host=localhost
 interface=enp0s3
 ```
 
-Replace `enp0s3` with your actual interface name. Then add the lab network to Zeek's networks config:
+Open `networks.cfg`:
 
 ```bash
 sudo nano /etc/zeek/networks.cfg
 ```
 
-```
+Add the SOC lab subnet:
+
+```text
 10.0.5.0/24    SOC Lab Network
 ```
 
@@ -150,15 +157,18 @@ sudo zeekctl deploy
 ls /opt/zeek/logs/current/
 ```
 
-You should see `conn.log`, `dns.log`, and `http.log` among others. To start Zeek automatically on boot, add the following to root's crontab:
+You should see logs such as `conn.log`, `dns.log`, and `http.log`.
+
+To start Zeek automatically on boot, open root's crontab:
 
 ```bash
 sudo crontab -e
 ```
 
-```
-@reboot /usr/bin/zeekctl start
-```
+Add the following line:
+
+```bash
+@reboot /usr/bin
 
 #### Configure Wazuh to Ingest Zeek Logs
 
