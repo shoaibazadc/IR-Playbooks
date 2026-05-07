@@ -147,15 +147,13 @@ Add the SOC lab subnet:
 10.0.5.0/24    SOC Lab Network
 ```
 
-Deploy Zeek and verify logs are being written:
+Deploy Zeek and verify logs are being written, You should see logs such as `conn.log`, `dns.log`, and `http.log`:
 
 ```bash
 sudo zeekctl deploy
 
 ls /opt/zeek/logs/current/
 ```
-
-You should see logs such as `conn.log`, `dns.log`, and `http.log`.
 
 To start Zeek automatically on boot, open root's crontab:
 
